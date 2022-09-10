@@ -8,11 +8,15 @@
 </head>
 <body>
     <h2>Login Here</h2>
-    <form>
+    @if(count($errors) > 0)
+    {{$errors}}
+    @endif
+    <form method="POST" action="{{route('login_process')}}">
+        @csrf
         <label>username</label>
-        <input type="text"/>
+        <input name="username" type="text"/>
         <label>password</label>
-        <input type="text"/>
+        <input name="password" type="text"/>
         <button>Login</button>
     </form>
 </body>

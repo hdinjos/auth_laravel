@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login','App\Http\Controllers\AuthController@index')->name('login');
+Route::get('login',[AuthController::class, 'index'])->name('login');
 
-Route::post('login_process','App\Http\Controllers\AuthController@login_process')->name('login_process');
+Route::post('login_process', [AuthController::class,'login_process'])->name('login_process');
 
-Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::group(['middleware' => ['login_chechk:admin']], function(){
-        Route::resource('admin',AdminController::class);
+    Route::group(['middleware' => ['login_check:admin']], function(){
+        Route::resource('admin', AdminController::class);
     });
 
     Route::group(['middleware' =>['login_check:editor']], function(){

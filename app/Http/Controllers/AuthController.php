@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -38,12 +37,12 @@ class AuthController extends Controller
 
             return redirect()->intended('/');
         }
-        return redirect('login')->withInput()->withErrors(['login gagal' => "This Credential not valid"]);
+        return redirect('login')->withInput()->withErrors(['error' => "This Credential not valid"]);
     }
 
     public function logout(Request $request){
         $request->session()->flush();
         Auth::logout();
-        return Redirect('login');
+        return redirect('login');
     }
 }

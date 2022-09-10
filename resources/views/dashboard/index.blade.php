@@ -7,7 +7,14 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h2>Wellcome user admin</h2>
+    <h2>Wellcome user {{Auth::user()->name}}</h2>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <a href="/logout">Logout</a>
     
 </body>
 </html>
