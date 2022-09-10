@@ -17,7 +17,15 @@ class Login_Check
      */
     public function handle(Request $request, Closure $next, $role)
     {
+        if(!Auth::check()){
+            return redirect('login');
+        }
+
+        $user = Auth::user();
+        if($user->level == $role){
+            return $next($request);
+        }
         
-        return $next($request);
+        return redirect('login')->with('error', 'you can not access');
     }
 }
