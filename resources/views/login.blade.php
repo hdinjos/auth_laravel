@@ -17,6 +17,10 @@
         <input name="username" type="text"/>
         <label>password</label>
         <input name="password" type="text"/>
+        <div>
+            <label>Remember me</label>
+            <input name="remember" type="checkbox" />
+        </div>
         <button>Login</button>
     </form>
 </body>

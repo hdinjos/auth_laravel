@@ -20,6 +20,7 @@ class AuthController extends Controller
     }
 
     public function login_process(Request $request){
+        $remember = $request->input('remember') === 'on' ? true : false;
         request()->validate([
             'username' => 'required',
             'password' => 'required',
@@ -27,7 +28,7 @@ class AuthController extends Controller
 
         $credential = $request->only('username', 'password');
 
-        if(Auth::attempt($credential)){
+        if(Auth::attempt($credential, $remember)){
             $user = Auth::user();
             if($user->level == 'admin'){
                 return redirect()->intended('admin');
